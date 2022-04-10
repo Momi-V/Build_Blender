@@ -13,16 +13,16 @@ mkdir log
 cd blender
 git pull origin master
 
-make update | tee ../log/update_1.log
+make update |& tee ../log/update_1.log
 
 #apt install -y python3    #already installed in cloud instance
-#make update | tee ../log/update_2.log
+#make update |& tee ../log/update_2.log
 
-make deps | tee ../log/deps_1.log
+make deps |& tee ../log/deps_1.log
 
 apt install -y autoconf automake bison libtool tcl yasm meson ninja-build
 
-make deps | tee ../log/deps_2.log
-make deps -k | tee ../log/deps_3.log
-make deps -k | tee ../log/deps_4.log
-make deps | tee ../log/deps_5.log
+make deps |& tee ../log/deps_2.log
+make deps -k |& tee ../log/deps_3.log
+make deps -k |& tee ../log/deps_4.log
+make deps |& tee ../log/deps_5.log
