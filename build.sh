@@ -9,13 +9,13 @@ mkdir ~/blender-git
 cd ~/blender-git
 git clone https://git.blender.org/blender.git
 
+mkdir log
 cd blender
 git pull origin master
 
 make update > ./log/update_1.log
 
-#apt install python3    #already installed in cloud instance
-
+#apt install -y python3    #already installed in cloud instance
 #make update > update_2.log
 
 make deps > ./log/deps_1.log
