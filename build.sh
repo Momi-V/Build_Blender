@@ -16,7 +16,7 @@ git pull origin master
 make update > ./log/update_1.log
 
 #apt install -y python3    #already installed in cloud instance
-#make update > update_2.log
+#make update > ./log/update_2.log
 
 make deps > ./log/deps_1.log
 
