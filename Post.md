@@ -4,9 +4,9 @@ The install_deps.sh script is not an option due to the portability being a core 
 
 The system i am using is an Ampere A1 compute instance in the Oracle Cloud free tier
 (  
-4 CPUs
-24 GB Ram
-5.13.0-1025-oracle #30~20.04.1-Ubuntu SMP Fri Apr 1 06:09:46 UTC 2022 aarch64 aarch64 aarch64 GNU/Linux
+4 CPUs  
+24 GB Ram  
+5.13.0-1025-oracle #30~20.04.1-Ubuntu SMP Fri Apr 1 06:09:46 UTC 2022 aarch64 aarch64 aarch64 GNU/Linux  
 ).  
 I will include the ssh key and IP-Adress for you to take a look at the System and I will try to keep them updated. If you want a clean slate instead of the system after I executed the script please comment and I will reset the system, but you can also register for free [cloud.oracle.com](https://cloud.oracle.com) and try it out yourself.
 
