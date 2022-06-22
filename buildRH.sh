@@ -16,6 +16,6 @@ cd blender
 git pull origin master
 
 dnf install -y \
-autoconf automake bison libtool yasm meson ninja-build patch perl-FindBin alsa-lib-devel pulseaudio-libs-devel
+autoconf automake bison libtool yasm tcl meson ninja-build python3-mako patch perl-FindBin alsa-lib-devel pulseaudio-libs-devel
 
 make deps
