@@ -34,5 +34,5 @@ function step {
     make deps |& tee ../logs/deps_"$2".txt
     
     cd ../build_linux/deps
-    rm -rf C* M* R* c* d*
+    rm -rf C* M* R* b* c* d*
 }
