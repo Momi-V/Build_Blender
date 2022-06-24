@@ -1,28 +1,38 @@
 #!/bin/sh
 
-apt update && apt full-upgrade -y && apt autopurge -y
+dnf upgrade -y && dnf install -y epel-release 'dnf-command(config-manager)' && dnf config-manager --set-enabled crb
 
-apt install -y build-essential git subversion cmake libx11-dev libxxf86vm-dev libxcursor-dev libxi-dev libxrandr-dev libxinerama-dev libglew-dev
-apt install -y libwayland-dev wayland-protocols libegl-dev libxkbcommon-dev libdbus-1-dev linux-libc-dev
+dnf install -y \
+gcc gcc-c++ git subversion make cmake mesa-libGL-devel libX11-devel libXxf86vm-devel libXi-devel libXcursor-devel libXrandr-devel libXinerama-devel libstdc++-static
+
+dnf install -y \
+wayland-devel wayland-protocols-devel mesa-libEGL-devel libxkbcommon-devel dbus-devel kernel-headers
 
 mkdir ~/blender-git
 cd ~/blender-git
 git clone https://git.blender.org/blender.git
 
-mkdir log
 cd blender
-git pull origin master
 
-make update |& tee ../log/update_1.log
+dnf install -y \
+autoconf automake bison libtool yasm tcl meson ninja-build
 
-apt install -y python3    #already installed in cloud instance
-make update |& tee ../log/update_2.log
+make deps -k
+make deps |& tee ../logs/deps_0.txt
 
-make deps |& tee ../log/deps_1.log
+EXTRA=( patch perl-FindBin alsa-lib-devel pulseaudio-libs-devel ncurses-devel diffutils python3-mako flex )
 
-apt install -y autoconf automake bison libtool tcl yasm meson ninja-build
+i=1
+for E in ${EXTRA[@]}; do
+    step "$E" "$i"
+    let "i+=1" 
+done
+function step {
+    dnf install -y "$1"
 
-make deps |& tee ../log/deps_2.log
-make deps -k |& tee ../log/deps_3.log
-make deps -k |& tee ../log/deps_4.log
-make deps |& tee ../log/deps_5.log
+    make deps -k
+    make deps |& tee ../logs/deps_"$2".txt
+    
+    cd ../build_linux/deps
+    rm -rf C* M* R* c* d*
+}
