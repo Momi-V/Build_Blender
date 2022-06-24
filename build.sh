@@ -22,17 +22,19 @@ make deps |& tee ../logs/deps_0.txt
 
 EXTRA=( patch perl-FindBin alsa-lib-devel pulseaudio-libs-devel ncurses-devel diffutils python3-mako flex )
 
+function step {
+    cd ../build_linux/deps
+    rm -rf C* M* R* b* c* d*
+    cd ../../blender
+    
+    dnf install -y "$1"
+
+    make deps -k
+    make deps |& tee ../logs/deps_"$2".txt
+}
+
 i=1
 for E in ${EXTRA[@]}; do
     step "$E" "$i"
     let "i+=1" 
 done
-function step {
-    dnf install -y "$1"
-
-    make deps -k
-    make deps |& tee ../logs/deps_"$2".txt
-    
-    cd ../build_linux/deps
-    rm -rf C* M* R* b* c* d*
-}
