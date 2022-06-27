@@ -30,7 +30,7 @@ function step {
     dnf install -y "$1"
 
     make deps -k
-    make deps -k |& tee ../logs/deps_"$2".txt
+    make deps |& tee ../logs/deps_"$2".txt
 }
 
 i=1
