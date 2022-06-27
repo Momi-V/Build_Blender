@@ -15,6 +15,6 @@ git clone https://git.blender.org/blender.git
 cd blender
 
 dnf install -y \
-autoconf automake bison libtool yasm tcl meson ninja-build patch diffutils perl-FindBin alsa-lib-devel pulseaudio-libs-devel ncurses-devel python3-mako flex
+autoconf automake bison libtool yasm tcl meson ninja-build patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel python3-mako flex
 
 make deps
