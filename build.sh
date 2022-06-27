@@ -20,7 +20,7 @@ autoconf automake bison libtool yasm tcl meson ninja-build
 make deps -k
 make deps |& tee ../logs/deps_0.txt
 
-EXTRA=( patch diffutils perl-FindBin alsa-lib-devel pulseaudio-libs-devel ncurses-devel python3-mako flex )
+EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel python3-mako flex )
 
 function step {
     cd ../build_linux/deps
