@@ -18,6 +18,7 @@ dnf install -y \
 autoconf automake bison libtool yasm tcl meson ninja-build
 
 make deps -k
+sleep 10
 make deps |& tee ../logs/deps_0.txt
 
 EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel python3-mako flex )
@@ -27,19 +28,17 @@ function step {
     cd ../build_linux/deps
     rm -rf C* M* R* b* c* d*
     cd ../../blender
-    sleep 10
 
     dnf install -y "$1"
 
     sleep 10
     make deps -k
-    make deps |& tee ../logs/deps_"$2".txt
     sleep 10
+    make deps |& tee ../logs/deps_"$2".txt
 }
 
 i=1
 for E in ${EXTRA[@]}; do
     step "$E" "$i"
     let "i+=1"
-    sleep 10
 done
