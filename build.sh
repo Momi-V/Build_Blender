@@ -23,18 +23,23 @@ make deps |& tee ../logs/deps_0.txt
 EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel python3-mako flex )
 
 function step {
+    sleep 10
     cd ../build_linux/deps
     rm -rf C* M* R* b* c* d*
     cd ../../blender
-    
+    sleep 10
+
     dnf install -y "$1"
 
+    sleep 10
     make deps -k
     make deps |& tee ../logs/deps_"$2".txt
+    sleep 10
 }
 
 i=1
 for E in ${EXTRA[@]}; do
     step "$E" "$i"
-    let "i+=1" 
+    let "i+=1"
+    sleep 10
 done
