@@ -16,6 +16,6 @@ cd blender
 git checkout blender-v3.2-release
 
 dnf install -y \
-autoconf automake bison libtool yasm tcl meson ninja-build
+autoconf automake bison libtool yasm tcl meson ninja-build patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel python3-mako flex
 
 make deps
