@@ -3,5 +3,5 @@
 Script for building Blender from source
 
 ```
-wget https://raw.githubusercontent.com/HPPinata/Build_Blender/main/build.sh
+wget https://raw.githubusercontent.com/HPPinata/Build_Blender/main/build.bash
 ```
