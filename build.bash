@@ -13,6 +13,7 @@ cd ~/blender-git
 git clone https://git.blender.org/blender.git
 
 cd blender
+git checkout blender-v3.2-release
 
 dnf install -y \
 autoconf automake bison libtool yasm tcl meson ninja-build
