@@ -27,7 +27,7 @@ EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurse
 function step {
     sleep 10
     cd ../build_linux/deps
-    rm -rf C* M* R* b* c* d*
+    rm -rfv !("packages")
     cd ../../blender
 
     dnf install -y "$1"
