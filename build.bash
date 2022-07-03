@@ -18,6 +18,7 @@ git checkout blender-v3.2-release
 dnf install -y \
 autoconf automake bison libtool yasm tcl meson ninja-build
 
+mkdir ../logs
 make deps -k
 sleep 10
 make deps |& tee ../logs/deps_0.txt
