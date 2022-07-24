@@ -25,7 +25,7 @@ make deps -k
 sleep 10
 make deps |& tee ../logs/deps_0.txt
 
-EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel python3-mako flex )
+EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex python3-mako )
 
 function step {
     sleep 10
