@@ -8,8 +8,8 @@ gcc gcc-c++ git subversion make cmake mesa-libGL-devel libX11-devel libXxf86vm-d
 dnf install -y \
 wayland-devel wayland-protocols-devel mesa-libEGL-devel libxkbcommon-devel dbus-devel kernel-headers
 
-mkdir ~/blender-git
-cd ~/blender-git
+mkdir /blender-git
+cd /blender-git
 git clone https://git.blender.org/blender.git
 
 cd blender
@@ -19,6 +19,7 @@ mkdir ../logs
 shopt -s extglob
 
 make deps |& tee ../logs/deps_-1.txt
+rm -rfv ../!("blender"|"logs")
 
 dnf install -y \
 autoconf automake bison libtool yasm tcl meson ninja-build
@@ -31,9 +32,7 @@ EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurse
 
 function step {
     sleep 10
-    cd ../build_linux/deps
-    rm -rfv !("packages")
-    cd ../../blender
+    rm -rfv ../build_linux/deps/!("packages")
 
     dnf install -y "$1"
 
