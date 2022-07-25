@@ -15,31 +15,31 @@ git clone https://git.blender.org/blender.git
 cd blender
 git checkout blender-v3.2-release
 
-mkdir ../logs
+mkdir ../logs ../snap
 shopt -s extglob
 
-make deps |& tee ../logs/deps_-1.txt
-rm -rfv ../!("blender"|"logs")
+make deps |& tee ../logs/deps_0.txt
+rm -rf ../!("blender"|"logs")
 
 dnf install -y \
 autoconf automake bison libtool yasm tcl meson ninja-build
 
 make deps -k
-sleep 10
-make deps |& tee ../logs/deps_0.txt
+make deps |& tee ../logs/deps_1.txt
+
+tar -czf ../snap/deps_0.archive.tar.gz ../build_linux/
+rm -rf ../build_linux/deps/!("packages")
 
 EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex python3-mako )
 
 function step {
-    sleep 10
-    rm -rfv ../build_linux/deps/!("packages")
-
     dnf install -y "$1"
 
-    sleep 10
     make deps -k
-    sleep 10
-    make deps |& tee ../logs/deps_"$2".txt
+    make deps |& tee ../logs/deps_"$1".txt
+    
+    tar -czf ../snap/deps_"$1".archive.tar.gz ../build_linux
+    rm -rf ../build_linux/deps/!("packages")
 }
 
 i=1
@@ -47,3 +47,8 @@ for E in ${EXTRA[@]}; do
     step "$E" "$i"
     let "i+=1"
 done
+
+cd /
+tar -czvf logs..tar.gz /blender-git/logs
+tar -czvf blender.tar.gz /blender-git
+rm -rf /blender-git
