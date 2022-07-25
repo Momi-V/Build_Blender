@@ -42,10 +42,8 @@ function step {
     rm -rf ../build_linux/deps/!("packages")
 }
 
-i=1
 for E in ${EXTRA[@]}; do
     step "$E" "$i"
-    let "i+=1"
 done
 
 cd /
