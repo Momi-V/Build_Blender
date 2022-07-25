@@ -15,11 +15,13 @@ git clone https://git.blender.org/blender.git
 cd blender
 git checkout blender-v3.2-release
 
-dnf install -y \
-autoconf automake bison libtool yasm tcl meson ninja-build
-
 mkdir ../logs
 shopt -s extglob
+
+make deps |& tee ../logs/deps_-1.txt
+
+dnf install -y \
+autoconf automake bison libtool yasm tcl meson ninja-build
 
 make deps -k
 sleep 10
