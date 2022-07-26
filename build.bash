@@ -27,7 +27,7 @@ autoconf automake bison libtool yasm tcl meson ninja-build
 make deps -k
 make deps |& tee ../logs/deps_1.txt
 
-tar -czf ../tar/deps_0.archive.tar.gz ../build_linux/
+tar -czf ../tar/deps_1.tar.gz ../build_linux/
 rm -rf ../build_linux/deps/!("packages")
 
 EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex python3-mako )
@@ -38,7 +38,7 @@ function step {
     make deps -k
     make deps |& tee ../logs/deps_"$1".txt
     
-    tar -czf ../tar/deps_"$1".archive.tar.gz ../build_linux
+    tar -czf ../tar/deps_"$1".tar.gz ../build_linux
     rm -rf ../build_linux/deps/!("packages")
 }
 
