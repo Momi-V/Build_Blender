@@ -1,0 +1,1 @@
+-DCMAKE_IGNORE_PATH=/usr cmake -DWITH_STATIC_LIBS=on
