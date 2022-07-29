@@ -18,14 +18,14 @@ git checkout blender-v3.2-release
 mkdir ../log ../tar
 shopt -s extglob
 
-make deps |& tee ../log/deps_0.txt
+make deps -n | sed "s+cmake+cmake -DWITH_STATIC_LIBS=on+g" | bash |& tee ../log/deps_0.txt
 rm -rf ../!("blender"|"log"|"tar")
 
 dnf install -y \
 autoconf automake bison libtool yasm tcl meson ninja-build
 
-make deps -k
-make deps |& tee ../log/deps_1.txt
+make deps -k -n | sed "s+cmake+cmake -DWITH_STATIC_LIBS=on+g" | bash
+make deps -n | sed "s+cmake+cmake -DWITH_STATIC_LIBS=on+g" | bash |& tee ../log/deps_1.txt
 
 tar -czf ../tar/deps_1.tar.gz ../build_linux/deps/!("packages")
 rm -rf ../build_linux/deps/!("packages") ../lib
@@ -35,8 +35,8 @@ EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurse
 function step {
     dnf install -y "$1"
 
-    make deps -k
-    make deps |& tee ../log/deps_"$1".txt
+    make deps -k -n | sed "s+cmake+cmake -DWITH_STATIC_LIBS=on+g" | bash
+    make deps -n | sed "s+cmake+cmake -DWITH_STATIC_LIBS=on+g" | bash |& tee ../log/deps_"$1".txt
     
     tar -czf ../tar/deps_"$1".tar.gz ../build_linux/deps/!("packages")
     rm -rf ../build_linux/deps/!("packages") ../lib
