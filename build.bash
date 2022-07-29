@@ -8,8 +8,8 @@ gcc gcc-c++ git subversion make cmake mesa-libGL-devel libX11-devel libXxf86vm-d
 dnf install -y \
 wayland-devel wayland-protocols-devel mesa-libEGL-devel libxkbcommon-devel dbus-devel kernel-headers
 
-mkdir /blender-git
-cd /blender-git
+mkdir ~/blender-git
+cd ~/blender-git
 git clone https://git.blender.org/blender.git
 
 cd blender
