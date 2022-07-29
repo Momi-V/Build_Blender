@@ -47,6 +47,6 @@ for E in ${EXTRA[@]}; do
 done
 
 cd /
-tar -czvf log.tar.gz /blender-git/log
-tar -czvf blender.tar.gz /blender-git
-rm -rf /blender-git
+tar -czvf log.tar.gz ~/blender-git/log
+tar -czvf blender.tar.gz ~/blender-git
+rm -rf ~/blender-git
