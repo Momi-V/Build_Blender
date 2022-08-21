@@ -11,7 +11,6 @@ wayland-devel wayland-protocols-devel mesa-libEGL-devel libxkbcommon-devel dbus-
 mkdir ~/blender-git
 cd ~/blender-git
 git clone https://git.blender.org/blender.git
-
 cd blender
 git checkout blender-v3.2-release
 
@@ -27,7 +26,7 @@ autoconf automake bison libtool yasm tcl meson ninja-build
 make deps -k
 make deps |& tee ../log/deps_1.txt
 
-tar -czf ../tar/deps_1.tar.gz ../build_linux/deps/!("packages")
+#tar -czf ../tar/deps_1.tar.gz ../build_linux/deps/!("packages")
 rm -rf ../build_linux/deps/!("packages") ../lib
 
 EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex python3-mako )
@@ -37,8 +36,8 @@ function step {
 
     make deps -k
     make deps |& tee ../log/deps_"$1".txt
-    
-    tar -czf ../tar/deps_"$1".tar.gz ../build_linux/deps/!("packages")
+
+#    tar -czf ../tar/deps_"$1".tar.gz ../build_linux/deps/!("packages")
     rm -rf ../build_linux/deps/!("packages") ../lib
 }
 
@@ -46,7 +45,6 @@ for E in ${EXTRA[@]}; do
     step "$E"
 done
 
-cd /
-tar -czvf log.tar.gz ~/blender-git/log
-tar -czvf blender.tar.gz ~/blender-git
-rm -rf ~/blender-git
+#tar -czvf log.tar.gz ~/blender-git/log
+#tar -czvf blender.tar.gz ~/blender-git
+#rm -rf ~/blender-git
