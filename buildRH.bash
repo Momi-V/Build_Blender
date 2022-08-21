@@ -11,7 +11,6 @@ wayland-devel wayland-protocols-devel mesa-libEGL-devel libxkbcommon-devel dbus-
 mkdir ~/blender-git
 cd ~/blender-git
 git clone https://git.blender.org/blender.git
-
 cd blender
 git checkout blender-v3.2-release
 
