@@ -19,32 +19,30 @@ git checkout blender-v3.2-release
 mkdir ../log ../tar
 shopt -s extglob
 
-make deps |& tee ../log/deps_0.txt
+make deps |& tee ../log/0_deps.txt
 rm -rf ../!("blender"|"log"|"tar")
 
 dnf install -y \
 autoconf automake bison libtool yasm tcl meson ninja-build
 
 make deps -k
-make deps |& tee ../log/deps_1.txt
+make deps |& tee ../log/1_deps.txt
 
-#tar -czf ../tar/deps_1.tar.gz ../build_linux/deps/!("packages")
+#tar -czf ../tar/1_deps.tar.gz ../build_linux/deps/!("packages")
 rm -rf ../build_linux/deps/!("packages") ../lib
 
 EXTRA=( patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex python3-mako )
-
-function step {
-    dnf install -y "$1"
-
-    make deps -k
-    make deps |& tee ../log/deps_"$1".txt
-
-#    tar -czf ../tar/deps_"$1".tar.gz ../build_linux/deps/!("packages")
-    rm -rf ../build_linux/deps/!("packages") ../lib
-}
+i=2
 
 for E in ${EXTRA[@]}; do
-    step "$E"
+    dnf install -y "$E"
+
+    make deps -k
+    make deps |& tee ../log/"$i"_deps_"$E".txt
+
+#    tar -czf ../tar/"$i"_deps_"$E".tar.gz ../build_linux/deps/!("packages")
+    rm -rf ../build_linux/deps/!("packages") ../lib
+    ((i++))
 done
 
 #tar -czvf log.tar.gz ~/blender-git/log
