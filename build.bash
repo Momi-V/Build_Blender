@@ -29,7 +29,7 @@ make deps |& tee ../log/1_deps.txt
 #tar -czf ../tar/1_deps.tar.gz ../build_linux/deps/!("packages")
 rm -rf ../build_linux/deps/!("packages") ../lib
 
-EXTRA=( patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex python3-mako )
+EXTRA=( patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel zlib-devel flex python3-mako )
 i=2
 
 for E in ${EXTRA[@]}; do
