@@ -13,6 +13,10 @@ cd ~/blender-git
 git clone https://git.blender.org/blender.git
 cd blender
 git checkout blender-v3.2-release
+VER=22.08
+HASH=$(curl -s https://github.com/PixarAnimationStudios/USD/archive/refs/tags/v${VER}.tar.gz | md5sum)
+sed -i "s+set(USD_VERSION *)+set(USD_VERSION $VER)+g" ./build_files/build_environment/cmake/versions.cmake
+sed -i "s+set(USD_HASH e0e441a05057692a83124a1195b09eed)+set(USD_HASH $HASH)+g" ./build_files/build_environment/cmake/versions.cmake
 
 dnf install -y \
 autoconf automake bison libtool yasm tcl meson ninja-build patch perl-FindBin diffutils alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex python3-mako
