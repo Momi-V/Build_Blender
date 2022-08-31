@@ -15,10 +15,10 @@ cd blender
 git checkout blender-v3.2-release
 
 mkdir ../log ../tar
-shopt -s extglob
 
 dnf install -y gcc-toolset-9
 scl enable gcc-toolset-9 - << \EOL
+shopt -s extglob
 
 make deps |& tee ../log/0_deps.txt
 rm -rf ../!("blender"|"log"|"tar")
