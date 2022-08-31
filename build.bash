@@ -17,6 +17,9 @@ git checkout blender-v3.2-release
 mkdir ../log ../tar
 shopt -s extglob
 
+dnf install -y gcc-toolset-9
+scl enable gcc-toolset-9 - << \EOL
+
 make deps |& tee ../log/0_deps.txt
 rm -rf ../!("blender"|"log"|"tar")
 
@@ -46,3 +49,4 @@ done
 make deps
 #tar -czvf log.tar.gz ~/blender-git/log
 #tar -czvf blender.tar.gz ~/blender-git && rm -rf ~/blender-git
+EOL
