@@ -1,3 +1,4 @@
+#!/bin/bash
 modprobe zram
 cat /sys/block/zram0/max_comp_streams
 cat /sys/block/zram0/comp_algorithm
