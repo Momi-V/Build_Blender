@@ -22,5 +22,5 @@ autoconf automake bison libtool yasm meson ninja-build
 dnf install -y \
 patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel zlib-devel flex python3-mako
 
-make deps -n | sed "s+-j 2+-j 1+g" | bash
+make deps
 EOL
