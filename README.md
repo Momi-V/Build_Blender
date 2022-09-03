@@ -11,3 +11,6 @@ wget https://raw.githubusercontent.com/HPPinata/Build_Blender/main/build.bash
 ```
 wget https://raw.githubusercontent.com/HPPinata/Build_Blender/main/buildRH.bash
 ```
+```
+wget https://raw.githubusercontent.com/HPPinata/Build_Blender/main/zram.bash
+```
