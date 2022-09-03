@@ -24,7 +24,7 @@ make deps |& tee ../log/0_deps.txt
 rm -rf ../!("blender"|"log"|"tar")
 
 dnf install -y \
-autoconf automake bison libtool tcl yasm meson ninja-build
+autoconf automake bison libtool yasm meson ninja-build
 
 make deps -k
 make deps |& tee ../log/1_deps.txt
