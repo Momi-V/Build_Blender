@@ -12,7 +12,7 @@ mkdir ~/blender-git
 cd ~/blender-git
 git clone https://git.blender.org/blender.git
 cd blender
-git checkout blender-v3.2-release
+git checkout blender-v3.3-release
 
 mkdir ../log ../tar
 
