@@ -17,7 +17,7 @@ git checkout blender-v3.2-release
 mkdir ../log ../tar
 
 dnf install -y gcc-toolset-9
-scl enable gcc-toolset-9 "bash -e || true" << EOL
+scl enable gcc-toolset-9 "bash || true" << EOL
 shopt -s extglob
 
 make deps |& tee ../log/0_deps.txt
