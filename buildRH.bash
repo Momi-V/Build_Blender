@@ -14,8 +14,8 @@ git clone https://git.blender.org/blender.git
 cd blender
 git checkout blender-v3.2-release
 
-dnf install -y gcc-toolset-9
-scl enable gcc-toolset-9 -- bash << 'EOL'
+dnf install -y gcc-toolset-10
+scl enable gcc-toolset-10 bash << 'EOL'
 
 dnf install -y \
 autoconf automake bison libtool tcl yasm meson ninja-build
