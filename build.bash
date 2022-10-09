@@ -47,6 +47,7 @@ for E in ${EXTRA[@]}; do
 done
 
 make deps -k && make deps -k
+make update
 make
 #tar -czvf log.tar.gz ~/blender-git/log
 #tar -czvf blender.tar.gz ~/blender-git && rm -rf ~/blender-git
