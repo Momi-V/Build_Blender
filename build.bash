@@ -46,7 +46,8 @@ for E in ${EXTRA[@]}; do
     ((i++))
 done
 
-make deps
+make deps -k && make deps -k
+make
 #tar -czvf log.tar.gz ~/blender-git/log
 #tar -czvf blender.tar.gz ~/blender-git && rm -rf ~/blender-git
 EOL
