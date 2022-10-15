@@ -22,7 +22,8 @@ autoconf automake bison libtool tcl yasm meson ninja-build
 dnf install -y \
 patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel zlib-devel flex python3-mako
 
-make deps -k -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
+make deps -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
+make deps -k
 make update
 make
 EOL
