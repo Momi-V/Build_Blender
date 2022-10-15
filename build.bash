@@ -24,7 +24,7 @@ make deps |& tee ../log/0_deps.txt
 rm -rf ../!("blender"|"log"|"tar")
 
 dnf install -y \
-autoconf automake bison libtool tcl yasm meson ninja-build
+autoconf automake bison libtool yasm meson ninja-build
 
 make deps -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
 make deps -k
@@ -33,7 +33,7 @@ make deps |& tee ../log/1_deps.txt
 #tar -czf ../tar/1_deps.tar.gz ../build_linux/deps/!("packages")
 rm -rf ../build_linux/deps/!("packages") ../lib
 
-EXTRA=( patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel zlib-devel flex python3-mako )
+EXTRA=( patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex zlib-devel python3-mako )
 i=2
 
 for E in ${EXTRA[@]}; do
