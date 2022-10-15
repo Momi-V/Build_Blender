@@ -26,7 +26,7 @@ rm -rf ../!("blender"|"log"|"tar")
 dnf install -y \
 autoconf automake bison libtool tcl yasm meson ninja-build
 
-make deps -k && make deps -k
+make deps -k -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
 make deps |& tee ../log/1_deps.txt
 
 #tar -czf ../tar/1_deps.tar.gz ../build_linux/deps/!("packages")
@@ -38,7 +38,7 @@ i=2
 for E in ${EXTRA[@]}; do
     dnf install -y "$E"
 
-    make deps -k && make deps -k
+    make deps -k -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
     make deps |& tee ../log/"$i"_deps_"$E".txt
 
 #    tar -czf ../tar/"$i"_deps_"$E".tar.gz ../build_linux/deps/!("packages")
@@ -46,7 +46,7 @@ for E in ${EXTRA[@]}; do
     ((i++))
 done
 
-make deps -k && make deps -k
+make deps -k -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
 make update
 make
 #tar -czvf log.tar.gz ~/blender-git/log
