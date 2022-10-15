@@ -18,9 +18,9 @@ dnf install -y gcc-toolset-10
 scl enable gcc-toolset-10 bash << 'EOL'
 
 dnf install -y \
-autoconf automake bison libtool tcl yasm meson ninja-build
+autoconf automake bison libtool yasm meson ninja-build
 dnf install -y \
-patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel zlib-devel flex python3-mako
+patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex zlib-devel python3-mako
 
 make deps -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
 make deps -k
