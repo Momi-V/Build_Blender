@@ -14,9 +14,11 @@ git clone https://git.blender.org/blender.git
 cd blender
 git checkout blender-v3.2-release
 
-sed -i 's+(SQLITE_URI.*)+(SQLITE_URI https://github.com/sqlite/sqlite/archive/refs/tags/version-${SQLITE_VERSION}.zip)+g'
-sed -i 's+(SQLITE_HASH.*)+(SQLITE_HASH $(wget -qO- $(SQLITE_URI) | sha1sum | cut -d " " -f 1)+g'
-sed -i 's+(SQLITE_FILE.*)+(SQLITE_FILE version-${SQLITE_VERSION}.zip)+g'
+cd build_files/build_environment/cmake
+sed -i 's+(SQLITE_URI.*)+(SQLITE_URI https://github.com/sqlite/sqlite/archive/refs/tags/version-${SQLITE_VERSION}.zip)+g' versions.cmake
+sed -i 's+(SQLITE_HASH.*)+(SQLITE_HASH $(wget -qO- $(SQLITE_URI) | sha1sum | cut -d " " -f 1)+g' versions.cmake
+sed -i 's+(SQLITE_FILE.*)+(SQLITE_FILE version-${SQLITE_VERSION}.zip)+g' versions.cmake
+cd ~/blender-git/blender
 
 dnf install -y gcc-toolset-10
 scl enable gcc-toolset-10 bash << 'EOL'
