@@ -15,6 +15,9 @@ cd blender
 git checkout blender-v3.2-release
 
 cd build_files/build_environment/cmake
+sed -i 's+(ZLIB_VERSION .*)+(ZLIB_VERSION 1.2.13)+g'
+sed -i 's+(ZLIB_HASH .*)+(ZLIB_HASH 9b8aa094c4e5765dabf4da391f00d15c)+g'
+
 sed -i 's+(SQLITE_URI .*)+(SQLITE_URI https://github.com/sqlite/sqlite/archive/refs/tags/version-${SQLITE_VERSION}.zip)+g' versions.cmake
 sed -i 's+(SQLITE_HASH .*)+(SQLITE_HASH 4d7a4664898766997c100d5c323f57743be43b3d)+g' versions.cmake
 sed -i 's+(SQLITE_FILE .*)+(SQLITE_FILE version-${SQLITE_VERSION}.zip)+g' versions.cmake
@@ -28,7 +31,7 @@ autoconf automake bison libtool yasm meson ninja-build
 dnf install -y \
 patch alsa-lib-devel pulseaudio-libs-devel ncurses-devel flex zlib-devel python3-mako
 
-make deps -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
+#make deps -n | sed "s+cmake+cmake -DPACKAGE_USE_UPSTREAM_SOURCES=OFF+g" | bash
 make deps -k
 make update
 make
