@@ -16,7 +16,7 @@ git checkout blender-v3.2-release
 
 cd build_files/build_environment/cmake
 sed -i 's+(SQLITE_URI.*)+(SQLITE_URI https://github.com/sqlite/sqlite/archive/refs/tags/version-${SQLITE_VERSION}.zip)+g' versions.cmake
-sed -i 's+(SQLITE_HASH.*)+(SQLITE_HASH $(wget -qO- $(SQLITE_URI) | sha1sum | cut -d " " -f 1)+g' versions.cmake
+sed -i 's+(SQLITE_HASH.*)+(SQLITE_HASH 4d7a4664898766997c100d5c323f57743be43b3d+g' versions.cmake
 sed -i 's+(SQLITE_FILE.*)+(SQLITE_FILE version-${SQLITE_VERSION}.zip)+g' versions.cmake
 cd ~/blender-git/blender
 
